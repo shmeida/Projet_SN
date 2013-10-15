@@ -1,6 +1,8 @@
 #ifndef GENERATION_HPP
 #define GENERATION_HPP
 
+#include "Population.hpp"
+
 template< typename G >
 class Generation
 {
