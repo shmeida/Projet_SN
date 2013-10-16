@@ -11,6 +11,6 @@ class Condition
 {
 public:
 	double calculF(Vector x);
-}
+};
 
-#endif
+#endif	     

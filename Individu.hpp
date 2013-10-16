@@ -7,11 +7,11 @@
 typedef std::vector<double> Vector;
 #endif
 
-struct Individu : public std::pair<int, Vector> {}
+struct Individu : public std::pair<int, Vector> {};
 
-//bool operator<(Individu const& p1, Individu const& p2 )
-//{
-//  return (p1.first < p2.first);
-//}
+bool operator<(Individu const& p1, Individu const& p2 )
+{
+  return (p1.first < p2.first);
+}
 
 #endif

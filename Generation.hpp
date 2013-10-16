@@ -5,7 +5,7 @@
 #include "Individu.hpp"
 #include "Condition.hpp"
 
-class Generation
+/*virtual*/ class Generation
 {
 protected:
 	Condition c;
@@ -22,10 +22,10 @@ public:
 	Generation();
 	~Generation();
 	
-	// Laquelle ?
-	Generation passerNouvelleGeneration();
+	// Laquelle ? On choisit la deuxième sinon pb avec Generation qui est abstrait et ca fait chier
+	// virtual Generation passerNouvelleGeneration() = 0;
 	// change a génération actuelle en la nouvelle génération
-	void passerNouvelleGeneration2();
+	virtual void passerNouvelleGeneration() = 0;
 	bool condArret(); 
 
 };
