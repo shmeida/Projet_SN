@@ -7,7 +7,7 @@
 typedef std::vector<double> Vector;
 #endif
 
-struct Individu : public std::pair<int, Vector> {};
+struct Individu : public std::pair<float, Vector> {};
 
 bool operator<(Individu const& p1, Individu const& p2 )
 {
