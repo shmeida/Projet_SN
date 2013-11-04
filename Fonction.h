@@ -1,4 +1,5 @@
-
+#ifndef _FONCTION
+#define _FONCTION
 #include <string>
 #include <list>
 #include <vector>
@@ -14,5 +15,8 @@ public:
 	void add(double c, char t);
 	list<Item> items;
 	string expression;
-	double calcul(Vector x);
+	double calcul(Vector& x);
+	void affichage();
 };
+
+#endif

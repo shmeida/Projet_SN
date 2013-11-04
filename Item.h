@@ -1,15 +1,20 @@
-
+#ifndef _ITEM
+#define _ITEM
 #include <string>
+#include <vector>
+#include <iostream>
 using namespace std;
 
-typedef std::vector<double> Vector;
+typedef vector<double> Vector;
 class Item
 {
 public:
-	Item();
 	Item(double c, char t);
 	~Item();
 	double coif;
 	char type;
 	double calcul(double x);
+	void affichage();
 };
+
+#endif

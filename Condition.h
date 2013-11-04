@@ -1,3 +1,6 @@
+#ifndef _CONDITION
+#define _CONDITION
+
 #include<iostream>
 #include<vector>
 #include"Fonction.h"
@@ -17,6 +20,7 @@ public:
 	Vector getBorneInf();
 	Vector getBorneSup();
 	void lireFicher();
+	void afficherConditions();
 private:
 	Vector borneInf;
 	Vector borneSup;
@@ -25,3 +29,5 @@ private:
 	int dimension;
 	int split(vector<string>& vecteur, string chaine, char separateur);
 };
+
+#endif

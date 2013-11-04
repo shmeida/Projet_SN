@@ -31,7 +31,7 @@ Condition Condition::operator=(Condition &con)
 
 bool Condition::respecteCondition(Vector & v)
 {
-	for(int i = 0; i < v.size(); i++)
+	for(unsigned int i = 0; i < v.size(); i++)
 	{
 		if(v[i] < borneInf[i])
 			return false;
@@ -39,7 +39,7 @@ bool Condition::respecteCondition(Vector & v)
 			return false;
 	}
 
-	for(int i = 0; i < conditions.size(); i++)
+	for(unsigned int i = 0; i < conditions.size(); i++)
 	{
 		if(conditions[i].calcul(v) > 0.0)
 			return false;
@@ -65,8 +65,8 @@ void Condition::lireFicher()
 	string str,item;
 	getline(fin,str);
 	Fonction* fon = new Fonction();
-	istringstream stream(str); 
-	while(stream>>item) 
+	istringstream stream1(str); 
+	while(stream1>>item) 
 	{
 		vector<string> VecStr;
 		split(VecStr, item, ',');
@@ -77,15 +77,15 @@ void Condition::lireFicher()
 	optimis = *fon;
 
 	getline(fin,str);
-	istringstream stream(str);
-	while(stream>>item) 
+	istringstream stream2(str);
+	while(stream2>>item) 
 	{
 		borneInf.push_back( atof(item.c_str()));
 	}
 
 	getline(fin,str);
-	istringstream stream(str);
-	while(stream>>item) 
+	istringstream stream3(str);
+	while(stream3>>item) 
 	{
 		borneSup.push_back( atof(item.c_str()));
 	}
@@ -94,8 +94,8 @@ void Condition::lireFicher()
 	{
 		cout<<str<<endl;
 		Fonction* fon = new Fonction();
-		istringstream stream(str); 
-		while(stream>>item) 
+		istringstream stream4(str); 
+		while(stream4>>item) 
 		{
 			vector<string> VecStr;
 			split(VecStr, item, ',');
@@ -107,7 +107,7 @@ void Condition::lireFicher()
 	}
 }
 
-int split(vector<string>& vecteur, string chaine, char separateur)
+int Condition::split(vector<string>& vecteur, string chaine, char separateur)
 {
 	vecteur.clear();
 
@@ -123,6 +123,14 @@ int split(vector<string>& vecteur, string chaine, char separateur)
 	vecteur.push_back(chaine);
 
 	return vecteur.size();
+}
+
+void Condition::afficherConditions()
+{
+	for(unsigned int i = 0; i< conditions.size(); i++)
+	{
+		conditions[i].affichage();
+	}
 }
 
 
