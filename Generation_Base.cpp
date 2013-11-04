@@ -19,6 +19,8 @@ Vector Generation_Base::mariage_ext( Individu ind1, Individu ind2 ) {
 	return v_filles;
 }
 
+//hghyfhyrff
+
 Individu Generation_Base::mariage( Individu ind1, Individu ind2 ) {
 	Vector v_filles = mariage_ext(ind1,ind2);
 	Individu result = {c.calculF(v_filles), v_filles};
@@ -42,7 +44,7 @@ Individu Generation_Base::mariageEtMutation( Individu ind1, Individu ind2, float
 void Generation_Base::passerNouvelleGeneration() {
 	std::set<Individu> filles;
 	//Creation de la Individu fille par mariage et mutation;
-	//Possibilité de réduire de moitié le nombre de fille
+	//Possibilit?de réduire de moiti?le nombre de fille
 	int i =0;
 	for ( std::set<Individu>::const_iterator it = population.begin(); it < population.end(); it++) {
 		int j =0;
