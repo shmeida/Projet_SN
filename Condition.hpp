@@ -1,16 +1,33 @@
-#ifndef CONDTION_HPP
-#define CONDTION_HPP
+#ifndef _CONDITION
+#define _CONDITION
 
-#ifndef MY_VECTOR
-#define MY_VECTOR
-#include <vector>
+#include<iostream>
+#include<vector>
+#include"Fonction.h"
+#include<fstream>
+#include<sstream>
+#include<cstdlib>
+
 typedef std::vector<double> Vector;
-#endif
-
 class Condition
 {
 public:
-	double calculF(Vector x);
+	Condition();
+	~Condition();
+	Condition(Condition &);
+	Condition operator=(Condition &);
+	bool respecteCondition(Vector &);
+	Vector getBorneInf();
+	Vector getBorneSup();
+	void lireFicher();
+	void afficherConditions();
+private:
+	Vector borneInf;
+	Vector borneSup;
+	std::vector<Fonction> conditions;
+	Fonction optimis;
+	int dimension;
+	int split(vector<string>& vecteur, string chaine, char separateur);
 };
 
-#endif	     
+#endif
