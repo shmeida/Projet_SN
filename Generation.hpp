@@ -5,7 +5,8 @@
 #include "Individu.hpp"
 #include "Condition.hpp"
 
-/*virtual*/ class Generation
+/*abstract*/
+class Generation
 {
 protected:
 	Condition c;

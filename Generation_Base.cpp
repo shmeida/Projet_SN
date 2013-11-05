@@ -23,7 +23,7 @@ Vector Generation_Base::mariage_ext( Individu ind1, Individu ind2 ) {
 
 Individu Generation_Base::mariage( Individu ind1, Individu ind2 ) {
 	Vector v_filles = mariage_ext(ind1,ind2);
-	Individu result = {c.calculF(v_filles), v_filles};
+	Individu result (c.calculF(v_filles), v_filles);
 	return result;
 }
 
@@ -37,7 +37,9 @@ Individu Generation_Base::mariageEtMutation( Individu ind1, Individu ind2, float
 		v_filles[indice] += 0; // Quels valeurs rajouter ?
 	}
 
-	Individu result = {c.calculF(v_filles), v_filles};
+	//Est-ce que v_filles correspond au condition ?
+
+	Individu result ( c.calculF(v_filles), v_filles);
 	return result;
 }		
 

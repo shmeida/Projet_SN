@@ -9,9 +9,6 @@ typedef std::vector<double> Vector;
 
 struct Individu : public std::pair<float, Vector> {};
 
-bool operator<(Individu const& p1, Individu const& p2 )
-{
-  return (p1.first < p2.first);
-}
+bool operator< (Individu const& p1, Individu const& p2 );
 
 #endif
