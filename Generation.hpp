@@ -10,10 +10,12 @@ class Generation
 {
 protected:
 	Condition cond;
-	int nbIndividuParPopulation;
+	int nbIndividuParPopulationConforme;
+	int nbIndividuParPopulationNonConforme;
 	typedef std::set<Individu> Population;
 	// Ici il nous faut un Set d'un couple (f(x),x) trié sur f(x) 
-	Population population;
+	Population populationNonConforme;
+	Population populationConforme;
 
 	std::set<Individu> fusionIndividu( std::set<Individu> pop1, std::set<Individu> pop2 );
 	virtual Individu mariage( Individu ind1, Individu ind2 ) = 0;

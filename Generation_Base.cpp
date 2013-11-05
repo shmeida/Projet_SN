@@ -45,38 +45,116 @@ Individu Generation_Base::mariageEtMutation( Individu ind1, Individu ind2, float
 }		
 
 void Generation_Base::passerNouvelleGeneration() {
-	Population filles;
+	Population filles_vrac;
 	//Creation de la Individu fille par mariage et mutation;
-	//Possibilite de réduire de moitie le nombre de fille
 	int i =0;
-	for ( Population::const_iterator it = population.begin(); it != population.end(); it++) {
+	for ( Population::const_iterator it = populationNonConforme.begin(); it != populationNonConforme.end(); it++) {
 		int j =0;
-		for ( Population::const_iterator it2 = population.begin(); it2 != population.end(); it2++) {
+		for ( Population::const_iterator it2 = populationNonConforme.begin(); it2 != populationNonConforme.end(); it2++) {
+			//Evite d'avoir des doublons !
 			if( i > j ) {
-				filles.insert( mariage(*it, *it2) );
+				filles_vrac.insert( mariage(*it, *it2) );
 			}
 			else break;
 			j++;
 		}
+		for(  Population::const_iterator it3 = populationConforme.begin(); it3 != populationConforme.end(); it3++) {
+			filles_vrac.insert( mariage(*it, *it3) );
+		}
 		i++;
 	}
-
-	Population populationSuivante;
-	Population::iterator it_mere = population.begin();
-	Population::iterator it_fille = filles.begin();
-	
-	for (int i = 0; i < nbIndividuParPopulation; i++)
-	{
-		if ( it_mere->first < it_fille->first) {
-			populationSuivante.insert(*it_mere);
-			it_mere++;
-		}
-		else {
-			populationSuivante.insert(*it_fille);
-			it_fille++;
+	i = 0;
+	for ( Population::const_iterator it = populationConforme.begin(); it != populationConforme.end(); it++) {
+		int j =0;
+		for ( Population::const_iterator it2 = populationConforme.begin(); it2 != populationConforme.end(); it2++) {
+			//Evite d'avoir des doublons !
+			if( i > j ) {
+				filles_vrac.insert( mariage(*it, *it2) );
+			}
+			else break;
+			j++;
 		}
 	}
 
-	population.clear();
-	population = populationSuivante;
+	pair<Population, Population> filles_tries = triConforme(filles_vrac);
+
+	//Cas conforme
+	Population populationConformeSuivante;
+	Population::iterator it_mere_conforme = populationNonConforme.begin();
+	Population::iterator it_fille_conforme = filles_tries.first.begin();
+
+	for (int i = 0; i < nbIndividuParPopulationConforme; i++)
+	{
+		if ( it_mere_conforme == populationConforme.end() ) {
+			for (int j = i; j < nbIndividuParPopulationConforme && it_fille_conforme != filles_tries.first.end(); j++)
+			{
+				populationConformeSuivante.insert(*it_fille_conforme);
+				it_fille_conforme++;
+			}
+			break;
+		}
+		if ( it_fille_conforme == filles_tries.first.end() ) {
+			for (int j = i; j < nbIndividuParPopulationConforme && it_mere_conforme != populationConforme.end() ; j++)
+			{
+				populationConformeSuivante.insert(*it_mere_conforme);
+				it_mere_conforme++;
+			}
+			break;
+		}
+
+		if ( it_mere_conforme->first < it_fille_conforme->first) {
+			populationConformeSuivante.insert(*it_mere_conforme);
+			it_mere_conforme++;
+		}
+		else {
+			populationConformeSuivante.insert(*it_fille_conforme);
+			it_fille_conforme++;
+		}
+	}
+
+	populationConforme.clear();
+	populationConforme = populationConformeSuivante;
+
+	//Cas non conforme
+	// garder les meilleurs non conformes ne nous interessent pas ! mais peuvent être utiles...
+	// le quart des non_conformes est gardé, le reste est généré aléatoirement
+	Population populationNonConformeSuivante;
+	Population::iterator it_mere_non_confome = populationNonConforme.begin();
+	Population::iterator it_fille_non_conforme = filles_tries.second.begin();
+	
+	for (int i = 0; i < nbIndividuParPopulationNonConforme/4; i++)
+	{
+		if ( it_mere_non_confome == populationNonConforme.end() ) {
+			for (int j = i; j < nbIndividuParPopulationNonConforme/4 && it_fille_non_conforme != filles_tries.second.end(); j++)
+			{
+				populationNonConformeSuivante.insert(*it_fille_non_conforme);
+				it_fille_non_conforme++;
+			}
+			break;
+		}
+		if ( it_fille_non_conforme == filles_tries.second.end() ) {
+			for (int j = i; j < nbIndividuParPopulationNonConforme/4 && it_mere_non_confome != populationNonConforme.end() ; j++)
+			{
+				populationNonConformeSuivante.insert(*it_mere_non_confome);
+				it_mere_non_confome++;
+			}
+			break;
+		}
+
+		if ( it_mere_non_confome->first < it_fille_non_conforme->first) {
+			populationNonConformeSuivante.insert(*it_mere_non_confome);
+			it_mere_non_confome++;
+		}
+		else {
+			populationNonConformeSuivante.insert(*it_fille_non_conforme);
+			it_fille_non_conforme++;
+		}
+	}
+
+	for (int i = nbIndividuParPopulationNonConforme/4; i < nbIndividuParPopulationNonConforme; i++) {
+		//TODO : populationNonConformeSuivante.insert( NEW INDIVIDU GENERER ALEATOIREMENT )
+	}
+
+	populationNonConforme.clear();
+	populationNonConforme = populationNonConformeSuivante;
 }
