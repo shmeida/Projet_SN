@@ -2,11 +2,10 @@
 #define _FONCTION
 #include <string>
 #include <list>
-#include <vector>
-#include "Item.h"
+#include "Item.hpp"
+#include "Vector.hpp"
 using namespace std;
 
-typedef vector<double> Vector;
 class Fonction
 {
 public:

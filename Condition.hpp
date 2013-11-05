@@ -3,12 +3,12 @@
 
 #include<iostream>
 #include<vector>
-#include"Fonction.h"
 #include<fstream>
 #include<sstream>
 #include<cstdlib>
+#include "Vector.hpp"
+#include"Fonction.hpp"
 
-typedef std::vector<double> Vector;
 class Condition
 {
 public:

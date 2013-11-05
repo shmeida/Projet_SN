@@ -1,7 +1,5 @@
-#include "Item.h"
+#include "Item.hpp"
 using namespace std;
-
-
 
 Item::Item(double c, char t)
 {

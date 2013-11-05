@@ -1,11 +1,7 @@
 #ifndef Individu_HPP
 #define Individu_HPP
 
-#ifndef MY_VECTOR
-#define MY_VECTOR
-#include <vector>
-typedef std::vector<double> Vector;
-#endif
+#include "Vector.hpp"
 
 struct Individu : public std::pair<float, Vector> {};
 

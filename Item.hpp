@@ -1,11 +1,10 @@
 #ifndef _ITEM
 #define _ITEM
 #include <string>
-#include <vector>
+#include "Vector.hpp"
 #include <iostream>
 using namespace std;
 
-typedef vector<double> Vector;
 class Item
 {
 public:
