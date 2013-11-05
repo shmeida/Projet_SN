@@ -3,7 +3,7 @@
 
 #include "Vector.hpp"
 
-struct Individu : public std::pair<float, Vector> {};
+struct Individu : public std::pair<double, Vector> {};
 
 bool operator< (Individu const& p1, Individu const& p2 );
 

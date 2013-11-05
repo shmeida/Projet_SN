@@ -21,6 +21,7 @@ public:
 	Vector getBorneSup();
 	void lireFicher();
 	void afficherConditions();
+	double calculOptimis(Vector& x);
 private:
 	Vector borneInf;
 	Vector borneSup;

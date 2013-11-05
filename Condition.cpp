@@ -132,4 +132,6 @@ void Condition::afficherConditions()
 	}
 }
 
-
+double Condition::calculOptimis(Vector& x) {
+	return optimis.calcul(x);
+}

@@ -1,12 +1,10 @@
 #include <iostream>
-#include "Individu.hpp"
-
 
 int main() {
-	Individu a, b;
-	a.first = 0.1f;
-	b.first = 0.2f;
+	for (int i = 0; i < 10; i++)
+	{
 
-	std::cout << (a < b) << std::endl;
+		std::cout << rand();
+	}
 
 }
