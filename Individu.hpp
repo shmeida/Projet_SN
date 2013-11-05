@@ -3,7 +3,9 @@
 
 #include "Vector.hpp"
 
-struct Individu : public std::pair<double, Vector> {};
+typedef std::pair<double, Vector> Individu;
+
+//struct Individu : public  {};
 
 bool operator< (Individu const& p1, Individu const& p2 );
 

@@ -17,9 +17,9 @@ Individu Generation_Base::mariage( Individu ind1, Individu ind2 ) {
 	Vector v_filles( ind1.second.size() )  ;
 	for (int i = 0; i < ind1.second.size(); i++)
 	{
-		v_filles[i] = (ind1.second[i] + ind1.second[i])/2;
+		v_filles[i] = (ind1.second[i] + ind2.second[i])/2;
 	}
-	return Individu /*result*/ (cond.calculOptimis(v_filles), v_filles);
+	return make_pair( cond.calculOptimis(v_filles), v_filles);
 	//return result;
 }
 
@@ -45,13 +45,13 @@ Individu Generation_Base::mariageEtMutation( Individu ind1, Individu ind2, float
 }		
 
 void Generation_Base::passerNouvelleGeneration() {
-	std::set<Individu> filles;
+	Population filles;
 	//Creation de la Individu fille par mariage et mutation;
 	//Possibilite de réduire de moitie le nombre de fille
 	int i =0;
-	for ( std::set<Individu>::const_iterator it = population.begin(); it < population.end(); it++) {
+	for ( Population::const_iterator it = population.begin(); it != population.end(); it++) {
 		int j =0;
-		for ( std::set<Individu>::const_iterator it2 = population.begin(); it2 < population.end(); it2++) {
+		for ( Population::const_iterator it2 = population.begin(); it2 != population.end(); it2++) {
 			if( i > j ) {
 				filles.insert( mariage(*it, *it2) );
 			}
@@ -61,9 +61,9 @@ void Generation_Base::passerNouvelleGeneration() {
 		i++;
 	}
 
-	std::set<Individu> populationSuivante;
-	std::set<Individu>::iterator it_mere = population.begin();
-	std::set<Individu>::iterator it_fille = filles.begin();
+	Population populationSuivante;
+	Population::iterator it_mere = population.begin();
+	Population::iterator it_fille = filles.begin();
 	
 	for (int i = 0; i < nbIndividuParPopulation; i++)
 	{
