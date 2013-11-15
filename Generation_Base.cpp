@@ -151,6 +151,7 @@ void Generation_Base::passerNouvelleGeneration() {
 		}
 	}
 
+	//Generation aléatoire du reste de la population non_conforme
 	for (int i = nbIndividuParPopulationNonConforme/4; i < nbIndividuParPopulationNonConforme; i++) {
 		//TODO : populationNonConformeSuivante.insert( NEW INDIVIDU GENERER ALEATOIREMENT )
 	}
